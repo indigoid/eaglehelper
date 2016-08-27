@@ -1,0 +1,70 @@
+all: seeed
+
+gerbers_seeed=\
+	$(basename).gbl \
+	$(basename).gbo \
+	$(basename).gbp \
+	$(basename).gbs \
+	$(basename).gml \
+	$(basename).gto \
+	$(basename).gtp \
+	$(basename).gtl \
+	$(basename).gts \
+	$(basename).txt \
+	$(basename).gpi \
+	$(basename).dri
+
+gerbers_hackvana=\
+  $(basename)_*.g* \
+  $(basename)_*.dri \
+  $(basename)_*.txt \
+  $(basename)-Vcut.g*
+
+gerbers_oshpark=\
+  $(basename).boardoutline.ger \
+  $(basename).boardoutline.gpi \
+  $(basename).bottomlayer.ger \
+  $(basename).bottomlayer.gpi \
+  $(basename).toplayer.ger \
+  $(basename).toplayer.gpi \
+  $(basename).bottomsilkscreen.ger \
+  $(basename).bottomsilkscreen.gpi \
+  $(basename).topsilkscreen.ger \
+  $(basename).topsilkscreen.gpi \
+  $(basename).bottomsoldermask.ger \
+  $(basename).bottomsoldermask.gpi \
+  $(basename).topsoldermask.ger \
+  $(basename).topsoldermask.gpi \
+  $(basename).tcream.ger \
+  $(basename).tcream.gpi \
+  $(basename).drills.dri \
+  $(basename).drills.xln
+
+
+backups=$(basename).b\#[0-9] $(basename).s\#[0-9] 
+zip_seeed=$(basename)-seeed.zip
+zip_oshpark=$(basename)-oshpark.zip
+zip_hackvana=$(basename)-hackvana.zip
+clean= \
+  $(backups) \
+  $(gerbers_oshpark) \
+  $(gerbers_hackvana) \
+  $(gerbers_seeed) \
+  $(zip_oshpark) \
+  $(zip_hackvana) \
+  $(zip_seeed)
+
+clean:
+	rm -f $(clean)
+
+cleanbackups: 
+	rm -f $(backups)
+
+oshpark:
+	zip -9 $(zip_oshpark) $(gerbers_oshpark)
+
+hackvana:
+	zip -9 $(zip_hackvana) $(gerbers_hackvana)
+
+seeed:
+	zip -9 $(zip_seeed) $(gerbers_seeed)
