@@ -48,3 +48,9 @@ preferred PCB fab shop
 
 5. Inspect the resulting `.zip` file with a Gerber viewer
 
+6. If OK, order PCBs!
+
+## disclaimer
+
+I am not responsible for any errors or cost in your PCB ordering.
+Check and recheck everything before you order!
